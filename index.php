@@ -15,7 +15,7 @@ session_start();
 
 <body>
     <h1>ajouter un produit</h1>
-    <form action="traitement.php" method="post">
+    <form action="traitement.php" method="$_POST">
         <p>
             <label>Nom du produit <input type="text" name="name" /></label>
         </p>
