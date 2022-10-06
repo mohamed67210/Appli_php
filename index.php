@@ -17,7 +17,7 @@ session_start();
     <h1>ajouter un produit</h1>
     <form action="traitement.php" method="post">
         <p>
-            <label>Nom du produit <input type="text" name="nom" /></label>
+            <label>Nom du produit <input type="text" name="name" /></label>
         </p>
         <p>
             <label>Prix du produit <input type="number" step="any" name="price" /></label>
