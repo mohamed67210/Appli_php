@@ -15,7 +15,7 @@ session_start();
 
 <body>
     <h1>ajouter un produit</h1>
-    <form action="traitement.php" method="$_POST">
+    <form action="traitement.php" method="POST">
         <p>
             <label>Nom du produit <input type="text" name="name" /></label>
         </p>
@@ -26,7 +26,7 @@ session_start();
             <label>Quantité <input type="number" value="1" name="qtt" /></label>
         </p>
         <p>
-            <input type="submit" name="submit" value="Ajouter le produit" />
+            <input type="submit" name="submit"  value="Ajouter le produit" />
         </p>
     </form>
 </body>
