@@ -40,11 +40,12 @@ session_start();
                     </label>
                     <input name="qtt" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="qtt" type="number" value="1">
                 </div>
-                <div class="flex items-center justify-center">
-                    <input class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="submit" value="Ajouter produit"/>
+                <div class="flex flex-row items-center justify-center">
+                    <input class=" cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="submit" value="Ajouter produit"/>
                 </div>
-
             </form>
+            <a href="recap.php"><input  class="cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit"  value="Voir mes produits"/></a>
+
         </div>
     </div>
 
