@@ -10,12 +10,13 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Récapitulatif de produits</title>
 </head>
 
 <body class="h-screen">
-    <header class="w-full h-10 flex  flex-row justify-center items-center ">
-        <ul class="w-full h-full flex flex-row justify-around items-center bg-green-200  text-white ">
+    <header class="w-full h-10 flex  flex-row justify-around items-center bg-green-200  ">
+        <ul class=" h-full flex flex-row justify-around items-center gap-5 text-white ">
 
             <a href="index.php" class="no-underline">
                 <li class="w-40 text-center	rounded-sm bg-teal-300">index</li>
@@ -26,6 +27,9 @@ session_start();
             </a>
 
         </ul>
+        <a class="w-40 text-center text-white rounded-sm bg-teal-300" href="recap.php" class="no-underline">
+            <i class="fa-solid fa-basket-shopping "> <?php if (empty($_SESSION['products']))  {echo "vide";}else{ echo count($_SESSION['products']);} ?></i>
+        </a>
 
     </header>
     <!-- container globale -->

@@ -39,7 +39,7 @@ if (isset($_POST['submit'])) {
             <label class="text-gray-500">Vous pouvez voir votre panier en cliquant sur ce bouton </label>
             <a href="recap.php" target="_blank" rel="noopener noreferrer"><input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="mes produits" /></a>
         </div>
-        <label class="text-gray-600"> OU</label>
+        <label class="text-gray-500"> OU</label>
         <div class="px-8 pt-6 pb-8 mb-4 flex w-2/5  flex-col justify-center items-center text-center gap-4 bg-white shadow-md rounded" >
             <label class="text-gray-500">Vous pouvez rajouter un autre produit </label>
             <a href="index.php" target="_blank" rel="noopener noreferrer"><input class="shadow bg-purple-500 hover:bg-purple-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded" type="submit" value="nouveau produit" /></a>
