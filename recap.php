@@ -1,16 +1,22 @@
 <?php
 session_start();
-function supprimer(){
+function delete_all(){
     unset($_SESSION['products']);
 }
+function delete_product($index){
+    unset($_SESSION['products'][$index]);
+}
 
-if (isset($_GET['delete'])) {
-    supprimer();
+if (isset($_GET['index'])) {
+    $index = $_GET['index'];
+    delete_product($index);
+    var_dump($index);
   }
-
-
-
+if (isset($_GET['delete'])) {
+    delete_all();
+  }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -76,7 +82,7 @@ if (isset($_GET['delete'])) {
                     "<td>" . $product['qtt'] . "</td>",
                     "<td>" . number_format($product['total'], 2, ',', " ") . " €</td>",
                     "<td>
-                    <button type='submit' name='delete-button' onClick='' class='btn btn-danger' value='".$index."'>supprimer</button>
+                    <a href='recap.php?index=".$index."'><button type='submit' name='delete-button' onClick='' class='btn btn-danger' value='".$index."'>supprimer</button></a>
                      <button type='button' class='btn btn-light'>Modifier</button>
                      </td>",
                     "</tr>";
@@ -92,7 +98,7 @@ if (isset($_GET['delete'])) {
             }
             ?>
         </div>
-        <a href="recap.php?delete=true">supprimer les produits</a>
+        <a href="recap.php?delete=true"><button type='submit' name='delete-button' class='btn btn-danger'>supprimer</button></a>
     </div>
     <script src="js/script.js"></script>
 </body>
