@@ -1,5 +1,15 @@
 <?php
 session_start();
+function supprimer(){
+    unset($_SESSION['products']);
+}
+
+if (isset($_GET['delete'])) {
+    supprimer();
+  }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,7 +24,7 @@ session_start();
     <title>Récapitulatif de produits</title>
 </head>
 
-<body class="h-screen">
+<body class="h-screen flex  flex-col ">
     <header class="w-full h-10 flex  flex-row justify-around items-center bg-green-200  ">
         <ul class=" h-full flex flex-row justify-around items-center gap-5 text-white ">
 
@@ -28,12 +38,16 @@ session_start();
 
         </ul>
         <a class="w-40 text-center text-white rounded-sm bg-teal-300" href="recap.php" class="no-underline">
-            <i class="fa-solid fa-basket-shopping "> <?php if (empty($_SESSION['products']))  {echo "vide";}else{ echo count($_SESSION['products']);} ?></i>
+            <i class="fa-solid fa-basket-shopping "> <?php if (empty($_SESSION['products'])) {
+                                                            echo "vide";
+                                                        } else {
+                                                            echo count($_SESSION['products']);
+                                                        } ?></i>
         </a>
 
     </header>
     <!-- container globale -->
-    <div class="w-full h-screen flex  flex-col justify-center items-center ">
+    <div class="w-full h-screen flex  flex-col justify-center items-center py-7 bg-teal-300 ">
         <!-- tableau container -->
         <div class="mt-5">
             <?php
@@ -49,6 +63,7 @@ session_start();
                 "<th>Prix</th>",
                 "<th>Qt</th>",
                 "<th>Total</th>",
+                "<th></th>",
                 "</tr>",
                 "</thead>",
                 "<tbody>";
@@ -60,6 +75,10 @@ session_start();
                     "<td>" . number_format($product['price'], 2, ',', " ") . " €</td>",
                     "<td>" . $product['qtt'] . "</td>",
                     "<td>" . number_format($product['total'], 2, ',', " ") . " €</td>",
+                    "<td>
+                    <button type='submit' name='delete-button' onClick='' class='btn btn-danger' value='".$index."'>supprimer</button>
+                     <button type='button' class='btn btn-light'>Modifier</button>
+                     </td>",
                     "</tr>";
                     $totalGeneral += $product['total'];
                 }
@@ -73,8 +92,9 @@ session_start();
             }
             ?>
         </div>
-
+        <a href="recap.php?delete=true">supprimer les produits</a>
     </div>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
