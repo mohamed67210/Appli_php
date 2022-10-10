@@ -3,7 +3,7 @@
 session_start();
 
 // $nombre_produit = count($_SESSION['products']);
-
+include'functions.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -23,45 +23,47 @@ session_start();
             <a href="index.php" class="no-underline">
                 <li class="w-40 text-center	rounded-sm bg-teal-300">index</li>
             </a>
-
-            <a href="recap.php" class="no-underline">
-                <li class="w-40 text-center	rounded-sm bg-teal-300">Panier</li>
-            </a>
         </ul>
-        <a class="w-40 text-center text-white rounded-sm bg-teal-300" href="recap.php" class="no-underline">
+        <!-- <a class="w-40 text-center text-white rounded-sm bg-teal-300" href="recap.php" class="no-underline">
             <i class="fa-solid fa-basket-shopping "> <?php if (empty($_SESSION['products']))  {echo "vide";}else{ echo count($_SESSION['products']);} ?></i>
+        </a> -->
+        <a class="w-40 text-center text-white rounded-sm bg-teal-300" href="recap.php" class="no-underline">
+            <i class="fa-solid fa-basket-shopping "><?php if (empty($_SESSION['products']))  {echo "vide";}else{ echo panier();} ?></i>
         </a>
     </header>
     <div class="w-full h-screen flex  flex-col justify-center items-center bg-green-200">
+        
         <div class="w-full max-w-xs flex  flex-col justify-center items-center">
             <h1 class="text-xl">ajouter un produit</h1>
-            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="traitement.php" method="POST">
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="traitement.php?action=ajouterProduit" method="POST">
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                         Nom du produit
                     </label>
-                    <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text">
+                    <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" required>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
                         Prix du produit
                     </label>
-                    <input name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" type="number">
+                    <input name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" step="0.01" type="number" min=0. required>
                 </div>
 
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="qtt">
                         Quantité
                     </label>
-                    <input name="qtt" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="qtt" type="number" value="1">
+                    <input name="qtt" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="qtt" type="number" value="1" min=1 required>
                 </div>
                 <div class="flex flex-row items-center justify-center">
                     <input class=" cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="submit" value="Ajouter produit" />
                 </div>
             </form>
         </div>
+         <!-- div pour afficher message ajout de produit validé -->
+         <div class="text-green-500 "><?php echo  $message['succes']?></div>
     </div>
 
 </body>

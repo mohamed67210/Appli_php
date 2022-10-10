@@ -1,20 +1,32 @@
 <?php
 session_start();
+include'functions.php';
+// fonction pour supprimer tt les elements du tableau
 function delete_all(){
     unset($_SESSION['products']);
 }
-function delete_product($index){
-    unset($_SESSION['products'][$index]);
-}
-
-if (isset($_GET['index'])) {
-    $index = $_GET['index'];
-    delete_product($index);
-    var_dump($index);
-  }
 if (isset($_GET['delete'])) {
     delete_all();
   }
+// fonction pour supprimer un seul produit quand va appeler par la suite 
+function delete_product($index){
+    unset($_SESSION['products'][$index]);
+}
+// quand on recoie le numero de l'index on supprime le produit avec l'index recu
+if (isset($_GET['index'])) {
+    $index = $_GET['index'];
+    delete_product($index);
+    // var_dump($index);
+  }
+// changer le contenu du bouton supprimer tout en fonction des produit 
+  function supprimerAll(){
+    if (empty($_SESSION['products'])) {
+        echo "pas de produit !";
+    } else {
+        echo "Supprimer tout";
+    }
+  }
+
 ?>
 
 <!DOCTYPE html>
@@ -37,18 +49,12 @@ if (isset($_GET['delete'])) {
             <a href="index.php" class="no-underline">
                 <li class="w-40 text-center	rounded-sm bg-teal-300">index</li>
             </a>
-
-            <a href="traitement.php" class="no-underline">
+            <!-- <a href="traitement.php" class="no-underline">
                 <li class="w-40 text-center	rounded-sm bg-teal-300">traitement</li>
-            </a>
-
+            </a> -->
         </ul>
         <a class="w-40 text-center text-white rounded-sm bg-teal-300" href="recap.php" class="no-underline">
-            <i class="fa-solid fa-basket-shopping "> <?php if (empty($_SESSION['products'])) {
-                                                            echo "vide";
-                                                        } else {
-                                                            echo count($_SESSION['products']);
-                                                        } ?></i>
+            <i class="fa-solid fa-basket-shopping "> <?php if (empty($_SESSION['products']))  {echo "vide";}else{ echo panier();} ?></i>
         </a>
 
     </header>
@@ -75,21 +81,22 @@ if (isset($_GET['delete'])) {
                 "<tbody>";
                 $totalGeneral = 0;
                 foreach ($_SESSION['products'] as $index => $product) {
+                    $newTotal = $product['qtt'] * $product['price'];
                     echo "<tr>",
                     "<td>" . $index . "</td>",
                     "<td>" . $product['name'] . "</td>",
                     "<td>" . number_format($product['price'], 2, ',', " ") . " €</td>",
-                    "<td>" . $product['qtt'] . "</td>",
-                    "<td><button><i class='fa-solid fa-minus'></i></button>" . number_format($product['total'], 2, ',', " ") . " € <button><i class='fa-solid fa-plus'></i></button></td>",
+                    "<td><a href='traitement.php?action=downQtt&id=$index'><i class='fa-solid fa-minus'></i></a>" . $product['qtt'] . "<a href='traitement.php?action=upQtt&id=$index'><i class='fa-solid fa-plus'></i></td></a></td>",
+                    "<td>" . number_format($newTotal, 2, ',', " ") . " €",
                     "<td>
-                    <a href='recap.php?index=".$index."'><button type='submit' name='delete-button' onClick='' class='btn btn-danger' value='".$index."'>supprimer</button></a>
+                    <a class='btn btn-danger' href='traitement.php?action=deleteProduit&id=$index'>supprimer</a>
                      </td>",
                     "</tr>";
-                    $totalGeneral += $product['total'];
+                    $totalGeneral += $newTotal;
                 }
                 echo "<tr>",
-                "<td class='table-primary'>Total general : </td>",
-                "<td class='table-primary'><strong>" . number_format($totalGeneral, 2, ",", " ") . " € </strong></td>",
+                "<td class='table-primary'colspan=4>Total general : </td>",
+                "<td class='table-primary' ><strong>" . number_format($totalGeneral, 2, ",", " ") . " € </strong></td>",
 
                 "</tr>";
                 echo "</tbody>",
@@ -97,7 +104,7 @@ if (isset($_GET['delete'])) {
             }
             ?>
         </div>
-        <a href="recap.php?delete=true"><button type='submit' name='delete-button' class='btn btn-danger'>supprimer</button></a>
+        <a href="traitement.php?action=viderPanier">Vider panier</a>
     </div>
     <script src="js/script.js"></script>
 </body>
