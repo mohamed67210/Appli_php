@@ -80,10 +80,9 @@ if (isset($_GET['delete'])) {
                     "<td>" . $product['name'] . "</td>",
                     "<td>" . number_format($product['price'], 2, ',', " ") . " €</td>",
                     "<td>" . $product['qtt'] . "</td>",
-                    "<td>" . number_format($product['total'], 2, ',', " ") . " €</td>",
+                    "<td><button><i class='fa-solid fa-minus'></i></button>" . number_format($product['total'], 2, ',', " ") . " € <button><i class='fa-solid fa-plus'></i></button></td>",
                     "<td>
                     <a href='recap.php?index=".$index."'><button type='submit' name='delete-button' onClick='' class='btn btn-danger' value='".$index."'>supprimer</button></a>
-                     <button type='button' class='btn btn-light'>Modifier</button>
                      </td>",
                     "</tr>";
                     $totalGeneral += $product['total'];
