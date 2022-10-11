@@ -3,7 +3,6 @@ session_start();
 
 $action = $_GET["action"];
 $id = (isset($_GET["id"])) ? $_GET["id"] : "";
-
 switch($action) {
     case "ajouterProduit":
         if (isset($_POST['submit'])) {
@@ -13,14 +12,6 @@ switch($action) {
             $succes = 'votre produit est ajouté !';
             $delete = "produit supprimé !";
 
-            if($succes && $delete){
-                $message =[
-                    "succes" => $succes,
-                    "delete" => $delete
-                ];
-                $_SESSION['messages'][] = $message;
-            }
-            
             if ($name && $price && $qtt) {
                 $product = [
                     "name" => $name,
@@ -31,20 +22,22 @@ switch($action) {
                 $_SESSION['products'][] = $product;
             }
         } 
+        $_SESSION['messages'] = 'le produit est bien enregistré !';
         
         // else {
             header("Location:index.php");
         // }
+        
     break;
 
     case "viderPanier":
         unset($_SESSION["products"]);
         header("Location:recap.php");
+        $_SESSION['messages'] = 'Le panier est vidé !';
     break;
 
     case "upQtt":
-          $_SESSION['products'][$id]['qtt']++;
-         
+        $_SESSION['products'][$id]['qtt']++;
         header("Location:recap.php");
     break;
     
@@ -60,6 +53,8 @@ switch($action) {
     case "deleteProduit":
         unset($_SESSION["products"][$id]);
         header("Location:recap.php");
+        $_SESSION['messages'] = 'Le produit est bien supprimé !';
+        
     break;
         
 }

@@ -56,10 +56,11 @@ if (isset($_GET['index'])) {
         <a class="w-40 text-center text-white rounded-sm bg-teal-300" href="recap.php" class="no-underline">
             <i class="fa-solid fa-basket-shopping "> <?php if (empty($_SESSION['products']))  {echo "vide";}else{ echo panier();} ?></i>
         </a>
-
+        <a href="traitement.php?action=viderPanier">Vider panier</a>
     </header>
     <!-- container globale -->
     <div class="w-full h-screen flex  flex-col justify-center items-center py-7 bg-teal-300 ">
+        <div><?php  echo afficherMessage();unset($_SESSION['messages']);?></div>
         <!-- tableau container -->
         <div class="mt-5">
             <?php
@@ -104,7 +105,7 @@ if (isset($_GET['index'])) {
             }
             ?>
         </div>
-        <a href="traitement.php?action=viderPanier">Vider panier</a>
+        
     </div>
     <script src="js/script.js"></script>
 </body>

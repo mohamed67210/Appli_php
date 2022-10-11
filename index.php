@@ -1,7 +1,6 @@
 <?php
 // : démarrer une session sur le serveur pour l'utilisateur courant
 session_start();
-
 // $nombre_produit = count($_SESSION['products']);
 include'functions.php';
 ?>
@@ -63,7 +62,7 @@ include'functions.php';
             </form>
         </div>
          <!-- div pour afficher message ajout de produit validé -->
-         <div class="text-green-500 "><?php echo  $message['succes']?></div>
+         <div class="text-green-500 "><?php  echo afficherMessage(); unset($_SESSION['messages']);?></div>
     </div>
 
 </body>

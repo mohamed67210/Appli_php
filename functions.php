@@ -8,6 +8,13 @@
         }
         return $qtt;
     }
-    function afficherMessage(){}
+    function afficherMessage(){
+        if (isset($_SESSION['messages'])){
+            return $_SESSION['messages'];
+        }else{
+            return null;
+        }
+        
+    }
 
 ?>
