@@ -1,20 +1,22 @@
 <?php
 session_start();
-
+include 'db_functions.php';
 $action = $_GET["action"];
 $id = (isset($_GET["id"])) ? $_GET["id"] : "";
 switch($action) {
     case "ajouterProduit":
         if (isset($_POST['submit'])) {
             $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
+            $description = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
             $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
             $qtt = filter_input(INPUT_POST, "qtt", FILTER_VALIDATE_INT);
             $succes = 'votre produit est ajouté !';
             $delete = "produit supprimé !";
 
-            if ($name && $price && $qtt) {
+            if ($name && $description && $price && $qtt) {
                 $product = [
                     "name" => $name,
+                    "description" =>$description,
                     "price" => $price,
                     "qtt" => $qtt,
                     "total" => $price * $qtt

@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: 0;
+    font-family: "Cinzel", serif;
+}
+
+#globale_container {
+    min-height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* width: 100%;  */
+    background-color: white;
+    gap: 20px;
+}
+
+#cards_container {
+    width: 80%;
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background-color: aquamarine;
+    padding: 10%;
+}
+.card {
+    width: 200px;
+    height: 300px;
+    background-color: white;
+    border-radius: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 10px;
+}
