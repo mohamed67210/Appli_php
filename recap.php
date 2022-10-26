@@ -95,7 +95,7 @@ if (isset($_GET['index'])) {
                     <a class='btn btn-danger' href='traitement.php?action=deleteProduit&id=$index'>supprimer</a>
                      </td>",
                     "</tr>";
-                    $totalGeneral += $newTotal;
+                     $totalGeneral += $newTotal;
                 }
                 echo "<tr>",
                 "<td class='table-primary'colspan=4>Total general : </td>",

@@ -37,4 +37,13 @@
     flex-direction: column;
     justify-content: center;
     padding-left: 10px;
+    border: 1px solid black;
+}
+.description{
+    display: inline-block;
+    max-width: 80%;
+    height: 1.5em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
