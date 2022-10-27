@@ -18,8 +18,6 @@ function connexion(){
     }
     function findOneById($id){
         $conn = connexion();
-        // $id = (isset($_GET["id"])) ? $_GET["id"] : "";
-        // var_dump($id);
             $request = $conn->query("SELECT * FROM product WHERE id ='$id' ");
             $request->execute();
             $product = $request->fetch();
@@ -27,8 +25,16 @@ function connexion(){
     }
 
     function insertProduct($name, $descr, $price){
-        $conn = connexion();
-        $requete = $conn->prepare("INSERT INTO livre ('name', 'description', 'price') VALUES ($name ,$descr,$price)");
+        
+            $conn = connexion();
+            // preparer la requete insert into
+            $requete = $conn->prepare("INSERT INTO product (name, description, price) VALUES (:name,:descr,:price)");
+            $requete-> bindValue(':name', $name);
+            $requete-> bindValue(':descr', $descr);
+            $requete-> bindValue(':price', $price);
+            $requete->execute();
+            $lastID =$conn->lastInsertId();
+            return $lastID;
     }
 
 

@@ -58,6 +58,26 @@ switch ($action) {
             var_dump($product['name']);
         }
         break;
+    
+    case "ajouterProduitBdd":
+        if (isset($_POST['submit'])) {
+
+        $name = filter_input(INPUT_POST, "name", FILTER_SANITIZE_SPECIAL_CHARS);
+        $descr = filter_input(INPUT_POST, "description", FILTER_SANITIZE_SPECIAL_CHARS);
+        $price = filter_input(INPUT_POST, "price", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+
+        if($name && $descr && $price ){
+            insertProduct($name, $descr, $price);
+            $id = insertProduct($name, $descr, $price);
+            var_dump($id);
+
+            header("Location:product.php?id=".$id."");
+            // header("Location:index.php");
+        }else {
+            echo 'erreur';
+        }
+    }
+        break;
 
     case "viderPanier":
         unset($_SESSION["products"]);

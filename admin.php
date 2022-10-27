@@ -30,10 +30,10 @@ include'functions.php';
             <i class="fa-solid fa-basket-shopping "><?php if (empty($_SESSION['products']))  {echo "vide";}else{ echo panier();} ?></i>
         </a>
     </header>
-    <div class="w-full h-screen flex  flex-col justify-center items-center bg-green-200">
+    <div class="w-full min-h-screen flex flex-row gap-20 justify-center items-center bg-green-200">
         
         <div class="w-full max-w-xs flex  flex-col justify-center items-center">
-            <h1 class="text-xl">ajouter un produit</h1>
+            <h1 class="text-xl">ajouter un produit au panier</h1>
             <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="traitement.php?action=ajouterProduit" method="POST">
 
                 <div class="mb-4">
@@ -60,6 +60,34 @@ include'functions.php';
                         Quantité
                     </label>
                     <input name="qtt" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="qtt" type="number" value="1" min=1 required>
+                </div>
+                <div class="flex flex-row items-center justify-center">
+                    <input class=" cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="submit" value="Ajouter produit" />
+                </div>
+            </form>
+        </div>
+
+        <div class="w-full max-w-xs flex  flex-col justify-center items-center">
+            <h1 class="text-xl">ajouter un produit a la base de données</h1>
+            <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" action="traitement.php?action=ajouterProduitBdd" method="POST">
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                        Nom du produit
+                    </label>
+                    <input name="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="name" type="text" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="description">
+                        Description
+                    </label>
+                    <textarea name="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="description" type="text" required></textarea>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
+                        Prix du produit
+                    </label>
+                    <input name="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="price" step="0.01" type="number" min=0. required>
                 </div>
                 <div class="flex flex-row items-center justify-center">
                     <input class=" cursor-pointer bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit" name="submit" value="Ajouter produit" />
